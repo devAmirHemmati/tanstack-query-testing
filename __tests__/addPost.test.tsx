@@ -1,9 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, afterEach } from "vitest";
 import { renderWithProvider } from ".";
 import { cleanup, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import AddPostPage from "@/app/add/page";
-import { afterEach } from "node:test";
 
 async function fillForm() {
   renderWithProvider(<AddPostPage />);
@@ -62,6 +61,7 @@ describe("Add post page", () => {
         screen.getByRole("button", { name: "Add Post" })
       ).toBeInTheDocument();
       expect(pushMock).toBeCalledTimes(1);
+      expect(pushMock).toHaveBeenCalledWith("/");
     });
   });
 });
